@@ -1,38 +1,176 @@
-.App {
+body{
+  height: 100%;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f8f9fa;
+}
+
+.header {
+  font-size: 23pt;
+  color: #262626;
   text-align: center;
+  background-color: #ffffff;
+  width: 100%;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e6e6e6;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.mainContainer {
+  max-width: 500px;
+  min-width: 330px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-content: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.dropdown-card-wrapper{
+  max-width: 500px;
+  min-width: 330px;
+}
+.card-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cardContainer {
+  background-color: #ffffff;
+  left: 0px;
+  right: 0px;
+  display: flex;
+  justify-content: space-between;
+  padding-left: 5px;
+  padding-right: 10px;
+  padding-bottom: 15px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e6e6e6;
+  border-radius: 7px;
+}
+.leftContainer {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.topLeft {
+  height: 100px;
+  vertical-align: middle;
+  margin-bottom: 15px;
+}
+.cityName {
+  font-size: 19pt;
+  color: #262626;
+}
+.weatherConditions {
+  font-size: 13pt;
+  color: #70757a;
 }
 
-.App-link {
-  color: #61dafb;
+.day {
+  font-size: 15pt;
+  color: #262626;
 }
+.time {
+  font-size: 13pt;
+  color: #70757a;
+}
+.rightContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+.topRight {
+  font-size: 26pt;
+  color: #262626;
+  margin-bottom: 15px;
+}
+.weatherImg {
+  vertical-align: middle;
+  margin: 0;
+}
+.bottomRight {
+  font-size: 13pt;
+  margin-bottom: 0;
+  color: #70757a;
+}
+.smallCardsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5px;
+}
+.smallCardContainer {
+  margin-top: 5px;
+  padding-top: 10px;
+  background-color: #ffffff;
+  margin-bottom: 25px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e6e6e6;
+  border-radius: 7px;
+  text-align: center;
+}
+.smallWeather {
+  font-size: 15pt;
+  color: #262626;
+}
+.bottomPart {
+  font-size: 10pt;
+  color: #70757a;
+  background-color: #e5f6fd;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-radius: 0 0 6px 6px;
+}
+.dropdown-wrapper{
+  align-self: center;
+  flex-direction: column;
+  margin-bottom: 15px;
+  width: 100%;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+}
+.dropdown-button{
+  color: #262626;
+  font-size: 13pt;
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 5px;
+  width: 100%;
+  border: 1px solid #e6e6e6;
+  display: flex;
+  justify-content: space-between;
+}
+.dropdown-list{
+  display:flex;
+  flex-direction: column;
+  color: #262626;
+  font-size: 13pt; 
+  margin-top: 1px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  width: 100%;
+  text-align: center;
+  border: 1px solid #e6e6e6;
+}
+.arrow{
+  transform: rotate(180deg) scaleX(-1);
+}
+@media screen and (max-width: 319px){
+  .smallCardsContainer{
+    justify-content: center;
   }
-  to {
-    transform: rotate(360deg);
+  .cardContainer{
+    justify-content: center;
+  }
+  .dropdown-button{
+    margin-left: 10px;
+  }
+  .arrow{
+    margin-right: 10px;
   }
 }
