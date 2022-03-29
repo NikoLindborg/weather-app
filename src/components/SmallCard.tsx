@@ -1,14 +1,7 @@
-import React, { useEffect } from 'react'
-import { IfList } from '../hooks/ApiHooks'
+import React from 'react'
+import {IfList} from '../hooks/ApiHooks'
 
-const SmallCard: React.FC<IfList> = ({
-  dt,
-  main,
-  weather,
-  wind,
-  snow,
-  rain,
-}) => {
+const SmallCard: React.FC<IfList> = ({dt, main, weather, wind, snow, rain}) => {
   const time = new Date(dt * 1000).toLocaleTimeString(undefined, {
     hour: 'numeric',
     minute: 'numeric',
@@ -16,21 +9,21 @@ const SmallCard: React.FC<IfList> = ({
   const precipitationCheck = () => {
     if (snow) {
       if (snow['1h'] !== undefined) {
-        return { length: '1h', amount: snow['1h'] }
+        return {length: '1h', amount: snow['1h']}
       }
 
       if (snow['3h'] !== undefined) {
-        return { length: '3h', amount: snow['3h'] }
+        return {length: '3h', amount: snow['3h']}
       }
     } else if (rain) {
       if (rain['1h'] !== undefined) {
-        return { length: '1h', amount: rain['1h'] }
+        return {length: '1h', amount: rain['1h']}
       }
       if (rain['3h'] !== undefined) {
-        return { length: '3h', amount: rain['3h'] }
+        return {length: '3h', amount: rain['3h']}
       }
     }
-    return { length: '1h', amount: 0 }
+    return {length: '1h', amount: 0}
   }
   const precipitation = precipitationCheck()
 

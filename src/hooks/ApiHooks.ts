@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import { doFetch } from '../utils/http'
-import { baseUrl, cityIds } from '../utils/variables'
-import { REACT_APP_API_KEY } from '../environment'
+import {useState, useEffect} from 'react'
+import {doFetch} from '../utils/http'
+import {baseUrl, cityIds} from '../utils/variables'
+import {REACT_APP_API_KEY} from '../environment'
 
 export interface IfCity {
   weather: [
@@ -62,7 +62,7 @@ const useWeather = () => {
   const [cities, setCities] = useState<IfCity[]>([])
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       const cityList = await getAllWeatherData()
       setCities(cityList)
     })()
@@ -72,10 +72,12 @@ const useWeather = () => {
     const cityList = cityIds.map(async (cityId) => {
       try {
         const forecastData = await doFetch(
+          // eslint-disable-next-line max-len
           `${baseUrl}data/2.5/forecast?id=${cityId}&units=metric&appid=${REACT_APP_API_KEY}`
         )
 
         const weatherData = await doFetch(
+          // eslint-disable-next-line max-len
           `${baseUrl}data/2.5/weather?id=${cityId}&units=metric&appid=${REACT_APP_API_KEY}`
         )
         const allData = <IfCity>{
@@ -112,7 +114,7 @@ const useWeather = () => {
     const results = await Promise.all(cityList)
     return results?.filter((city): city is IfCity => city !== undefined)
   }
-  return { cities }
+  return {cities}
 }
 
-export { useWeather }
+export {useWeather}

@@ -5,5 +5,4 @@ const jyvaskyla = 655195
 const kuopio = 650225
 const cityIds = [espoo, tampere, jyvaskyla, kuopio]
 
-
 export {baseUrl, cityIds}

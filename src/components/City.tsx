@@ -1,18 +1,13 @@
-import React, { useEffect } from 'react'
-import { IfCity } from '../hooks/ApiHooks'
+import React from 'react'
+import {IfCity} from '../hooks/ApiHooks'
 import SmallCard from './SmallCard'
 
-const City: React.FC<IfCity> = ({
-  weather,
-  name,
-  dt,
-  main,
-  list,
-  wind,
-  snow,
-  rain,
-}) => {
-  const date = new Date(dt * 1000)
+interface IfProps {
+  city: IfCity
+}
+
+const City: React.FC<IfProps> = ({city}) => {
+  const date = new Date(city.dt * 1000)
   const day = date.toLocaleDateString(undefined, {
     month: 'short',
     day: 'numeric',
@@ -21,25 +16,27 @@ const City: React.FC<IfCity> = ({
     hour: 'numeric',
     minute: 'numeric',
   })
+
   const precipitationCheck = () => {
-    if (snow) {
-      if (snow['1h'] !== undefined) {
-        return { length: '1h', amount: snow['1h'] }
+    if (city.snow) {
+      if (city.snow['1h'] !== undefined) {
+        return {length: '1h', amount: city.snow['1h']}
       }
 
-      if (snow['3h'] !== undefined) {
-        return { length: '3h', amount: snow['3h'] }
+      if (city.snow['3h'] !== undefined) {
+        return {length: '3h', amount: city.snow['3h']}
       }
-    } else if (rain) {
-      if (rain['1h'] !== undefined) {
-        return { length: '1h', amount: rain['1h'] }
+    } else if (city.rain) {
+      if (city.rain['1h'] !== undefined) {
+        return {length: '1h', amount: city.rain['1h']}
       }
-      if (rain['3h'] !== undefined) {
-        return { length: '3h', amount: rain['3h'] }
+      if (city.rain['3h'] !== undefined) {
+        return {length: '3h', amount: city.rain['3h']}
       }
     }
-    return { length: '1h', amount: 0 }
+    return {length: '1h', amount: 0}
   }
+
   const precipitation = precipitationCheck()
 
   return (
@@ -47,8 +44,10 @@ const City: React.FC<IfCity> = ({
       <div className="cardContainer">
         <div className="leftContainer">
           <div className="topLeft">
-            <div className="cityName">{name}</div>
-            <div className="weatherConditions">{weather[0].description}</div>
+            <div className="cityName">{city.name}</div>
+            <div className="weatherConditions">
+              {city.weather[0].description}
+            </div>
           </div>
           <div className="bottomLeft">
             <div className="day">{day}</div>
@@ -59,14 +58,14 @@ const City: React.FC<IfCity> = ({
           <div className="topRight">
             <img
               className="weatherImg"
-              src={`http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`}
+              src={`http://openweathermap.org/img/wn/${city.weather[0].icon}@2x.png`}
               alt="weather icon"
             />
-            {Math.round(main.temp)} °C
+            {Math.round(city.main.temp)} °C
           </div>
           <div className="bottomRight">
-            <div>Wind: {wind.speed.toFixed(1)} m/s</div>
-            <div>Humidity: {main.humidity}%</div>
+            <div>Wind: {city.wind.speed.toFixed(1)} m/s</div>
+            <div>Humidity: {city.main.humidity}%</div>
             <div>
               Precipitation ({precipitation?.length}): {precipitation?.amount}mm
             </div>
@@ -74,7 +73,7 @@ const City: React.FC<IfCity> = ({
         </div>
       </div>
       <div className="smallCardsContainer">
-        {list.slice(0, 5).map((el, i) => (
+        {city.list.slice(0, 5).map((el, i) => (
           <SmallCard
             key={i}
             dt={el.dt}

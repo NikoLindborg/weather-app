@@ -1,15 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, {useEffect, useState} from 'react'
 interface cityList {
   cities: String[]
   chosenCity: String
   setChosenCity: React.Dispatch<React.SetStateAction<string>>
 }
 
-const DropDown: React.FC<cityList> = ({
-  cities,
-  chosenCity,
-  setChosenCity,
-}) => {
+const DropDown: React.FC<cityList> = ({cities, chosenCity, setChosenCity}) => {
   const [display, setDisplay] = useState('none')
 
   const handleClick = () => {
@@ -32,9 +28,10 @@ const DropDown: React.FC<cityList> = ({
   return (
     <div className="dropdown-wrapper">
       <button className="dropdown-button" onClick={handleClick}>
-        <div className="buttonText">{chosenCity}</div> <div className="arrow">^</div>
+        <div className="buttonText">{chosenCity}</div>{' '}
+        <div className="arrow">^</div>
       </button>
-      <div style={{ display: display }}>
+      <div style={{display: display}}>
         {cities.map((e, i) => (
           <button
             className="dropdown-list"

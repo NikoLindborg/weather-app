@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { useWeather } from '../hooks/ApiHooks'
+/* eslint-disable indent */
+import React, {useState} from 'react'
+import {useWeather} from '../hooks/ApiHooks'
 import City from './City'
 import DropDown from './DropDown'
 
 const CityList = () => {
-  const { cities } = useWeather()
+  const {cities} = useWeather()
   const [chosenCity, setChosenCity] = useState('Kaikki Kaupungit')
 
   return (
@@ -16,34 +17,10 @@ const CityList = () => {
           setChosenCity={setChosenCity}
         />
         {chosenCity == 'Kaikki Kaupungit'
-          ? cities.map((e, i) => (
-              <City
-                key={i}
-                weather={e.weather}
-                name={e.name}
-                dt={e.dt}
-                main={e.main}
-                list={e.list}
-                wind={e.wind}
-                snow={e.snow}
-                rain={e.rain}
-              />
-            ))
+          ? cities.map((e, i) => <City key={i} city={e} />)
           : cities
               .filter((e) => e.name == chosenCity)
-              .map((e, i) => (
-                <City
-                  key={i}
-                  weather={e.weather}
-                  name={e.name}
-                  dt={e.dt}
-                  main={e.main}
-                  list={e.list}
-                  wind={e.wind}
-                  snow={e.snow}
-                  rain={e.rain}
-                />
-              ))}
+              .map((e, i) => <City key={i} city={e} />)}
       </div>
     </div>
   )
